@@ -50,7 +50,7 @@ class Window(QMainWindow, Ui_MainWindow):
         self.editing = False
 
     def openFiles(self):
-        files = QFileDialog.getOpenFileNames(self, 'Выберите файлы')
+        files = QFileDialog.getOpenFileNames(self, 'Выберите файлы', "C:/")
         if not files[1]:
             return
         self.opennedFiles.extend(map(lambda x: Path(x), files[0]))
