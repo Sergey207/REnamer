@@ -27,6 +27,11 @@
        </item>
        <item>
         <widget class="QLineEdit" name="edtOldName">
+         <property name="font">
+          <font>
+           <pointsize>8</pointsize>
+          </font>
+         </property>
          <property name="readOnly">
           <bool>true</bool>
          </property>
@@ -70,6 +75,11 @@
        </item>
        <item>
         <widget class="QLineEdit" name="edtNewName">
+         <property name="font">
+          <font>
+           <pointsize>8</pointsize>
+          </font>
+         </property>
          <property name="readOnly">
           <bool>true</bool>
          </property>

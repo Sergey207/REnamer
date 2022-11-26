@@ -36,6 +36,9 @@ class Ui_Form(object):
 
         self.edtOldName = QLineEdit(Form)
         self.edtOldName.setObjectName(u"edtOldName")
+        font = QFont()
+        font.setPointSize(8)
+        self.edtOldName.setFont(font)
         self.edtOldName.setReadOnly(True)
 
         self.horizontalLayout_2.addWidget(self.edtOldName)
@@ -66,6 +69,7 @@ class Ui_Form(object):
 
         self.edtNewName = QLineEdit(Form)
         self.edtNewName.setObjectName(u"edtNewName")
+        self.edtNewName.setFont(font)
         self.edtNewName.setReadOnly(True)
 
         self.horizontalLayout.addWidget(self.edtNewName)

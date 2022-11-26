@@ -10,4 +10,4 @@ class FileWidget(QWidget, Ui_Form):
         super(FileWidget, self).__init__()
         self.setupUi(self)
         self.path = path
-        self.edtOldName.setText(path.parent.name + '/' + path.name)
+        self.edtOldName.setText(path.name)
