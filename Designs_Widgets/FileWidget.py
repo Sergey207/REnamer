@@ -2,7 +2,7 @@ from pathlib import Path
 
 from PySide6.QtWidgets import QWidget
 
-from fileWidgetDesign import Ui_Form
+from Designs_Widgets.fileWidgetDesign import Ui_Form
 
 
 class FileWidget(QWidget, Ui_Form):

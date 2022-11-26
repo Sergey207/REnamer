@@ -8,9 +8,9 @@ from PySide6.QtCore import QSize
 from PySide6.QtGui import QIcon
 from PySide6.QtWidgets import QMainWindow, QApplication, QFileDialog, QListWidgetItem
 
-from FileWidget import FileWidget
-from TemplatesDialog import TemplatesDialog
-from mainWindowDesign import Ui_MainWindow
+from Designs_Widgets.FileWidget import FileWidget
+from Designs_Widgets.TemplatesDialog import TemplatesDialog
+from Designs_Widgets.mainWindowDesign import Ui_MainWindow
 
 MAIN_PATH = Path(__file__).parent
 IMG_PATH = MAIN_PATH / 'img'
