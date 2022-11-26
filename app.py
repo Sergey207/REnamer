@@ -109,6 +109,14 @@ class Window(QMainWindow, Ui_MainWindow):
             self.opennedFiles.insert(index + 1, self.opennedFiles.pop(index))
         self.updateList()
 
+    def onDeleteClick(self):
+        sender = self.sender().parent()
+        for i in range(self.listWidget.count()):
+            if self.listWidget.itemWidget(self.listWidget.item(i)) == sender:
+                self.opennedFiles.pop(i)
+                self.updateList()
+                return
+
     def updateList(self):
         self.listWidget.clear()
         for i, file in enumerate(self.opennedFiles):
@@ -118,6 +126,7 @@ class Window(QMainWindow, Ui_MainWindow):
             new_widget = FileWidget(file)
             new_widget.btnUp.clicked.connect(self.onArrowClick)
             new_widget.btnDown.clicked.connect(self.onArrowClick)
+            new_widget.btnDelete.clicked.connect(self.onDeleteClick)
 
             new_widget.btnUp.setIcon(QIcon(str(IMG_PATH / 'Up.png')))
             new_widget.btnDown.setIcon(QIcon(str(IMG_PATH / 'Down.png')))
