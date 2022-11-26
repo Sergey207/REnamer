@@ -34,7 +34,8 @@ class Window(QMainWindow, Ui_MainWindow):
         self.btnRename.clicked.connect(self.renameFiles)
         self.edtTemplate.textChanged.connect(self.updateList)
 
-        self.opennedFiles = [Path(i) for i in (MAIN_PATH / 'test').iterdir()]
+        self.opennedFiles = []
+        # self.opennedFiles = [Path(i) for i in (MAIN_PATH / 'test').iterdir()]
         self.updateList()
 
     def addTemplate(self):
