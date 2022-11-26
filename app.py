@@ -6,7 +6,7 @@ from pathlib import Path
 
 from PySide6.QtCore import QSize
 from PySide6.QtGui import QIcon
-from PySide6.QtWidgets import QMainWindow, QApplication, QFileDialog, QListWidgetItem
+from PySide6.QtWidgets import QMainWindow, QApplication, QFileDialog, QListWidgetItem, QPushButton
 
 from Designs_Widgets.FileWidget import FileWidget
 from Designs_Widgets.TemplatesDialog import TemplatesDialog
@@ -34,7 +34,7 @@ class Window(QMainWindow, Ui_MainWindow):
         self.btnRename.clicked.connect(self.renameFiles)
         self.edtTemplate.textChanged.connect(self.updateList)
 
-        self.opennedFiles = []
+        self.opennedFiles = [Path(i) for i in (MAIN_PATH / 'test').iterdir()]
         self.updateList()
 
     def addTemplate(self):
@@ -92,6 +92,23 @@ class Window(QMainWindow, Ui_MainWindow):
         new_name = new_name.strip()
         return new_name
 
+    def onArrowClick(self):
+        sender: QPushButton = self.sender()
+        if self.listWidget.count() <= 1:
+            return
+        index = None
+        for i in range(self.listWidget.count()):
+            if self.listWidget.itemWidget(self.listWidget.item(i)) == sender.parent():
+                index = i
+                break
+        if index is None:
+            return
+        if sender.objectName() == 'btnUp' and index >= 1:
+            self.opennedFiles.insert(index - 1, self.opennedFiles.pop(index))
+        elif sender.objectName() == 'btnDown' and index < (self.listWidget.count() - 1):
+            self.opennedFiles.insert(index + 1, self.opennedFiles.pop(index))
+        self.updateList()
+
     def updateList(self):
         self.listWidget.clear()
         for i, file in enumerate(self.opennedFiles):
@@ -99,6 +116,9 @@ class Window(QMainWindow, Ui_MainWindow):
             self.listWidget.addItem(widget)
 
             new_widget = FileWidget(file)
+            new_widget.btnUp.clicked.connect(self.onArrowClick)
+            new_widget.btnDown.clicked.connect(self.onArrowClick)
+
             new_widget.btnUp.setIcon(QIcon(str(IMG_PATH / 'Up.png')))
             new_widget.btnDown.setIcon(QIcon(str(IMG_PATH / 'Down.png')))
             new_widget.btnDelete.setIcon(QIcon(str(IMG_PATH / 'Delete.png')))
